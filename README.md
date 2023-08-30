@@ -2,7 +2,7 @@
 
 [![Clojars Project](https://img.shields.io/clojars/v/org.scicloj/kindly-advice.svg)](https://clojars.org/org.scicloj/kindly-advice)
 
-Kindly-advice is a small library to advise Clojure data visualization and notebook tools how to display forms and values, following the [kindly](https://github/scicloj/kindly) convention.
+Kindly-advice is a small library to advise Clojure data visualization and notebook tools how to display forms and values, following the [Kindly](https://github.com/scicloj/kindly) convention.
 
 ## status
 initial draft WIP
