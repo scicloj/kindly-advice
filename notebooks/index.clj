@@ -1,7 +1,9 @@
 (ns index
   (:require [scicloj.kindly-advice.v1.api :as kindly-advice]
             [scicloj.kindly-advice.v1.advisors :as advisors]
-            [scicloj.kindly.v4.kind :as kind])
+            [scicloj.kindly.v4.kind :as kind]
+            [scicloj.kindly.v4.api :as kindly]
+            [tablecloth.api :as tc])
   (:import java.awt.image.BufferedImage))
 
 (kindly-advice/advise {:form '(+ 1 2)
@@ -54,3 +56,7 @@ scicloj.kindly-advice.v1.api/*advisors
 
 (kindly-advice/advise
  {:form (read-string "^{:kind/hiccup true} big-big-orange-three")})
+
+(-> {:x [1 2 3]}
+    tc/dataset
+    value-advise)

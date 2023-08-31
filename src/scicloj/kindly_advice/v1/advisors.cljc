@@ -36,7 +36,7 @@
       (-> v
           type
           pr-str
-          (= "tech.v3.dataset.context.dataset.Dataset")))
+          (= "tech.v3.dataset.impl.dataset.Dataset")))
     :kind/dataset]
    [(fn [v]
       (-> v
