@@ -43,7 +43,7 @@
           type
           pr-str
           (= "java.awt.image.BufferedImage")))
-    :kind/buffered-image]
+    :kind/image]
    [(fn [v]
       (some-> v
               meta

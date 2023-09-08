@@ -21,6 +21,3 @@
 
 (defn set-advisors! [advisors]
   (reset! *advisors advisors))
-
-(defn set-only-advisor! [advisor]
-  (set-advisors! [advisor]))
