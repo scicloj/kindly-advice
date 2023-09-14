@@ -6,8 +6,8 @@
   (atom advisors/default-advisors))
 
 (defn advise
-  "Adds advice to a context such as {:form [:div]}.
-  Advice recommends a kind {:form [:div], :value [:div], :kind :kindly/hiccup}.
+  "Adds advice to a context such as `{:form [:div]}`.
+  Advice recommends a kind `{:form [:div], :value [:div], :kind :kindly/hiccup}`.
   Works best with both form and value because metadata may appear on either.
   If no value is present, will evaluate `:form` and populate `:value` and `:kind`."
   ([context]
