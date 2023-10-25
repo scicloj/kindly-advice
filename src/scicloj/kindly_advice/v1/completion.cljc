@@ -29,18 +29,20 @@
                           (keyword)))))
 
 (defn meta-kind [x]
-  (when-let [m (meta x)]
-    (or
-      ;; ^{:kindly/kind :kind/table} x
-      (kind (:kindly/kind m))
+  (or
+    (when-let [m (meta x)]
+      (or
+        ;; ^{:kindly/kind :kind/table} x
+        (kind (:kindly/kind m))
 
-      ;; ^kind/table x
-      (kind (:tag m))
+        ;; ^kind/table x
+        (kind (:tag m))
 
-      ;; ^:kind/table x
-      (->> (keys m)
-           (keep kind)
-           (first)))))
+        ;; ^:kind/table x
+        (->> (keys m)
+             (keep kind)
+             (first))))
+    (when (var? x) (meta-kind @x))))
 
 (defn complete-meta-kind [{:keys [form value]
                            :as context}]
