@@ -1,13 +1,12 @@
-{:deps {org.clojure/clojure         {:mvn/version "1.10.3"}
-        org.scicloj/kindly {:mvn/version "4-alpha3"}}
- :aliases {:dev {:extra-deps {org.scicloj/clay {:mvn/version "2-alpha32"}
-                              scicloj/tablecloth {:mvn/version "7.000-beta-51"}}
-                 :extra-paths ["notebooks"]}
-           :build {:deps {io.github.seancorfield/build-clj
-                          {:git/tag "v0.6.4" :git/sha "c21cfde"}}
+{:deps    {org.clojure/clojure {:mvn/version "1.11.1"}}
+ :aliases {:dev   {:extra-deps  {org.scicloj/clay   {:mvn/version "2-alpha32"}
+                                 scicloj/tablecloth {:mvn/version "7.000-beta-51"}}
+                   :extra-paths ["test" "notebooks"]}
+           ;; Run tests with `clojure -T:build`
+           :build {:deps       {io.github.seancorfield/build-clj
+                                {:git/tag "v0.6.4" :git/sha "c21cfde"}}
                    :ns-default build}
-           :test {:extra-paths ["test"]
-                  :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}
-                               io.github.cognitect-labs/test-runner
-                               {:git/tag "v0.5.0" :git/sha "48c3c67"}
-                               org.scicloj/clay {:mvn/version "2-alpha32"}}}}}
+           ;; Run tests with `clojure -M:test -m cognitect.test-runner`
+           :test  {:extra-paths ["test"]
+                   :extra-deps  {org.scicloj/kindly                   {:mvn/version "4-alpha7"}
+                                 io.github.cognitect-labs/test-runner {:git/tag "v0.5.0" :git/sha "48c3c67"}}}}}
