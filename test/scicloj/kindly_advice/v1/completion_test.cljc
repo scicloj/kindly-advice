@@ -28,6 +28,6 @@
     (is (= nil (kac/meta-kind ^{:kindly/kind :not-a-kind} {}))))
   (testing "tricky kinds"
     (is (= :kind/table (kac/meta-kind table3)))
-    (is (= :kind/table (kac/meta-kind #'table3)))
+    (is (= nil (kac/meta-kind #'table3)))
     (is (= :kind/table (kac/meta-kind #'table4)))
     (is (= :kind/table (kac/meta-kind #'table5)))))

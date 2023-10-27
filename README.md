@@ -4,8 +4,33 @@
 
 Kindly-advice is a small library to advise Clojure data visualization and notebook tools how to display forms and values, following the [Kindly](https://github.com/scicloj/kindly) convention.
 
-## status
-initial draft WIP
+## Status
+
+Initial draft WIP
+
+## Notes for tool authors
+
+Handling vars, atom, refs, futures, delays needs some care.
+To help with this, there is `derefing-advise` which will take care of that.
+Using `derefing-advise` overwrites the original value, and possibly the kind.
+Bear in mind that visualizations may be nested.
+Also consider that top level vars may or may not need expanding depending on the context.
+For example:
+
+```
+(def icon (kind/hiccup [:svg [:circle {:r 50}]]))
+```
+
+Probably the user would like the SVG displayed immediately.
+
+```
+(def x (delay 10))
+```
+
+Probably the user would not want anything displayed, or maybe just `#'x`, but unlikely `10`.
+
+For this reason there is also `top-level-advise` which provides reasonable defaults.
+
 
 ## License
 
