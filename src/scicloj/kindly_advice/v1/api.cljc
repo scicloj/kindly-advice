@@ -21,7 +21,7 @@
        (update :advice vec))))
 
 (defn add-advisor! [advisor]
-  (swap! *advisors conj advisor))
+  (swap! *advisors (partial cons advisor)))
 
 (defn set-advisors! [advisors]
   (reset! *advisors advisors))
