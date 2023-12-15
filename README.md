@@ -39,15 +39,17 @@ Asking for advice for given form (optionally annotated by Kindly). The form is e
 ```clj
 (kindly-advice/advise {:form
                        ^:kind/hiccup
-                       '[:div [:h1 (pr-str (range 9))]]})
+                       [:div [:h1 "hello"]]})
 
 ;; => 
-{:form [:div [:h1 (pr-str (range 9))]],
- :value [:div [:h1 "(0 1 2 3 4 5 6 7 8)"]],
- :meta-kind nil,
- :kind :kind/vector,
- :advice [[:kind/vector {:reason :predicate}]
-          [:kind/seq {:reason :predicate}]]}
+{:form [:div [:h1 "hello"]],
+ :value [:div [:h1 "hello"]],
+ :meta-kind :kind/hiccup,
+ :kind :kind/hiccup,
+ :advice
+ [[:kind/hiccup {:reason :metadata}]
+  [:kind/vector {:reason :predicate}]
+  [:kind/seq {:reason :predicate}]]}
 ```
 
 Sometimes, there is no inferred kind, as no metadata or relevant predicates say anything useful:
