@@ -7,7 +7,7 @@ Kindly-advice is a small library to advise Clojure data visualization and notebo
 ## Status
 Kindly-advice will stabilize soon and is currently getting feedback from tool-makers.
 
-## Example
+## Usage
 
 ```clj
 (require '[scicloj.kindly.v4.kind :as kind]
@@ -30,7 +30,7 @@ Asking for advice for given value (optionally annotated by Kindly):
 
 ```
 
-The `:kind` field is the important one, expressing the bottom line of the inference: `kindly-advice` recommends the tool handles this value as Hiccup.
+The `:kind` field is the important one, expressing the bottom line of the inference: Kindly-advice recommends the tool handles this value as Hiccup.
 
 The tool's job will usually be to display the `:value` field based on the `:kind` field.
 
@@ -86,6 +86,14 @@ In some situations, the kind inferred by predicates. Kindly-advice has a list of
   [:kind/map {:reason :predicate}]]}
 
 ```
+
+## Examples
+
+Kindly-advice is used by the following projects:
+* [kind-portal](https://github.com/scicloj/kind-portal)
+* [kind-clerk](https://github.com/scicloj/kind-clerk)
+* [read-kinds](https://github.com/scicloj/read-kinds)
+* [Clay](https://scicloj.github.io/clay/)
 
 
 ## License
