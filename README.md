@@ -14,7 +14,7 @@ Kindly-advice will stabilize soon and is currently getting feedback from tool-ma
          '[scicloj.kindly-advice.v1.api :as kindly-advice])
 ```
 
-Asking for advice for given value (optionally annotated by Kindly):
+Asking for advice for a given value (optionally annotated by Kindly):
 ```clj
 (kindly-advice/advise {:value (kind/hiccup
                                [:div [:h1 "hello"]])})
