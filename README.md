@@ -4,12 +4,89 @@
 
 Kindly-advice is a small library to advise Clojure data visualization and notebook tools how to display forms and values, following the [Kindly](https://github.com/scicloj/kindly) convention.
 
-## status
-still in alpha stage, expected to stabilize soon
+## Status
+Kindly-advice will stabilize soon and is currently getting feedback from tool-makers.
+
+## Example
+
+```clj
+(require '[scicloj.kindly.v4.kind :as kind]
+         '[scicloj.kindly-advice.v1.api :as kindly-advice])
+```
+
+Asking for advice for given value (optionally annotated by Kindly):
+```clj
+(kindly-advice/advise {:value (kind/hiccup
+                               [:div [:h1 "hello"]])})
+
+;; => 
+{:value [:div [:h1 "hello"]],
+ :meta-kind :kind/hiccup,
+ :kind :kind/hiccup,
+ :advice
+ [[:kind/hiccup {:reason :metadata}]
+  [:kind/vector {:reason :predicate}]
+  [:kind/seq {:reason :predicate}]]}
+
+```
+
+The `:kind` field is the important one, expressing the bottom line of the inference: `kindly-advice` recommends the tool handles this value as Hiccup.
+
+The tool's job will usually be to display the `:value` field based on the `:kind` field.
+
+Asking for advice for given form (optionally annotated by Kindly). The form is evaluated to produce the value. Kindly-advice checks both the form and value for metadata. The metadata might not be present on the value.
+
+```clj
+(kindly-advice/advise {:form
+                       ^:kind/hiccup
+                       '[:div [:h1 (pr-str (range 9))]]})
+
+;; => 
+{:form [:div [:h1 (pr-str (range 9))]],
+ :value [:div [:h1 "(0 1 2 3 4 5 6 7 8)"]],
+ :meta-kind nil,
+ :kind :kind/vector,
+ :advice [[:kind/vector {:reason :predicate}]
+          [:kind/seq {:reason :predicate}]]}
+```
+
+Sometimes, there is no inferred kind, as no metadata or relevant predicates say anything useful:
+
+```clj
+
+(kindly-advice/advise {:form '(+ 1 2)})
+;; =>
+{:form (+ 1 2), :value 3, :meta-kind nil, :advice []}
+```
+
+In some situations, the kind inferred by predicates. Kindly-advice has a list of default predicates, which can be extended by the user. In the following eexample, it recognizes a dataset created by Tablecloth.
+
+```clj
+(require '[tablecloth.api :as tc])
+(kindly-advice/advise {:value (tc/dataset {:x (range 4)})})
+
+;; =>
+{:value _unnamed [4 1]:
+
+ | :x |
+ |---:|
+ |  0 |
+ |  1 |
+ |  2 |
+ |  3 |
+ ,
+ :meta-kind nil,
+ :kind :kind/dataset,
+ :advice
+ [[:kind/dataset {:reason :predicate}]
+  [:kind/map {:reason :predicate}]]}
+
+```
+
 
 ## License
 
-Copyright © 2021 Scicloj
+Copyright © 2023 Scicloj
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
