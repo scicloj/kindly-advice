@@ -15,6 +15,7 @@
             [deps-deploy.deps-deploy :as dd]))
 
 (def lib 'org.scicloj/kindly-advice)
+
 (def version "1-alpha6")
 (def snapshot (str version "-SNAPSHOT"))
 (def class-dir "target/classes")
