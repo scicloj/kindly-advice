@@ -1,8 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [1-alpha6-SNAPSHOT]
+
+## [1-alpha6] - 2024-01-11
 - updated deps
+- recognizing `:kind/smile-model` in some situations
 
 ## [1-alpha5] - 2023-12-01
 - fixed add-advisor! -- prioritizing the new advice first

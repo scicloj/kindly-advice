@@ -36,6 +36,12 @@
       (-> v
           type
           pr-str
+          (= "smile.regression.LinearModel")))
+    :kind/smile-model]
+   [(fn [v]
+      (-> v
+          type
+          pr-str
           (= "tech.v3.dataset.impl.dataset.Dataset")))
     :kind/dataset]
    [(fn [v]
