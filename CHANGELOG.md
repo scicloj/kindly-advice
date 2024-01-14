@@ -1,6 +1,8 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [1-alpha7] - 2024-01-14
+- exposing `default-advisors` in the API
 
 ## [1-alpha6] - 2024-01-11
 - updated deps

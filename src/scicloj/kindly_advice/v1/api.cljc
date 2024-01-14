@@ -2,6 +2,9 @@
   (:require [scicloj.kindly-advice.v1.advisors :as advisors]
             [scicloj.kindly-advice.v1.completion :as completion]))
 
+(def default-advidors
+  advisors/default-advisors)
+
 (def *advisors
   (atom advisors/default-advisors))
 
