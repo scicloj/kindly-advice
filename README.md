@@ -7,7 +7,7 @@ Kindly-advice is a small library to advise Clojure data visualization and notebo
 [Documentation](https://scicloj.github.io/kindly-noted/kindly-advice)
 
 ## Status
-Kindly-advice will stabilize soon and is currently getting feedback from tool-makers.
+Kindly-advice is in Beta stage.
 
 ## License
 
