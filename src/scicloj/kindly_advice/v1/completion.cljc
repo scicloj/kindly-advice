@@ -83,7 +83,7 @@
                          :as   context}]
   (let [meta-options (or (meta-options form)
                          (meta-options value))]
-    (update context :options
+    (update context :kindly/options
             (fn [options]
               (deep-merge options kindly/*options* meta-options)))))
 
