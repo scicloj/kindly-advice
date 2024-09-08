@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [1-beta2] - 2024-09-08
+- added option capturing using `kindly/*options*`
+
 ## [1-beta1] - 2024-03-29
 (just renaming the previous release as Beta) 
 
