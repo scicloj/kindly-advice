@@ -89,8 +89,8 @@
       (set! kindly/*options* (deep-merge kindly/*options* options (meta-options *ns*))))
     ;; Toolmakers should ensure *options* is reset when reading namespaces by (binding [kindly/*options* kindly/*options*] ...)
     (update context :kindly/options
-            (fn [options]
-              (deep-merge options kindly/*options* options)))))
+            (fn [context-options]
+              (deep-merge context-options kindly/*options* options)))))
 
 (defn complete [context]
   (-> context
