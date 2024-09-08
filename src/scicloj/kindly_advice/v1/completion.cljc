@@ -81,8 +81,8 @@
 
 (defn complete-options [{:keys [form value]
                          :as   context}]
-  (let [options (or (meta-options form)
-                    (meta-options value))]
+  (let [options (deep-merge (meta-options form)
+                            (meta-options value))]
     ;; Kindly options found on ns cause *options* to be mutated
     (when (and (sequential? form)
                (-> form first (= 'ns)))
