@@ -55,7 +55,7 @@
   (or
     (when-let [m (meta x)]
       (:kindly/options m))
-    (when (var? x) (meta-kind @x))))
+    (when (var? x) (meta-options @x))))
 
 (defn deep-merge
   "Recursively merges maps together. If all the maps supplied have nested maps
@@ -81,11 +81,16 @@
 
 (defn complete-options [{:keys [form value]
                          :as   context}]
-  (let [meta-options (or (meta-options form)
-                         (meta-options value))]
+  (let [options (deep-merge (meta-options form)
+                            (meta-options value))]
+    ;; Kindly options found on ns cause *options* to be mutated
+    (when (and (sequential? form)
+               (-> form first (= 'ns)))
+      (set! kindly/*options* (deep-merge kindly/*options* options (meta-options *ns*))))
+    ;; Toolmakers should ensure *options* is reset when reading namespaces by (binding [kindly/*options* kindly/*options*] ...)
     (update context :kindly/options
             (fn [options]
-              (deep-merge options kindly/*options* meta-options)))))
+              (deep-merge options kindly/*options* options)))))
 
 (defn complete [context]
   (-> context
