@@ -53,31 +53,20 @@
 
 (defn meta-options [x]
   (or
-    (when-let [m (meta x)]
-      (:kindly/options m))
-    (when (var? x) (meta-options @x))))
+   (when-let [m (meta x)]
+     (:kindly/options m))
+   (when (var? x) (meta-options @x))))
+
 
 (defn deep-merge
-  "Recursively merges maps together. If all the maps supplied have nested maps
-  under the same keys, these nested maps are merged. Otherwise the value is
-  overwritten, as in `clojure.core/merge`."
-  {:arglists '([& maps])}
-  ([])
-  ([a] a)
-  ([a b]
-   (when (or a b)
-     (letfn [(merge-entry [m e]
-               (let [k (key e)
-                     v' (val e)]
-                 (if (contains? m k)
-                   (assoc m k (let [v (get m k)]
-                                (if (and (map? v) (map? v'))
-                                  (deep-merge v v')
-                                  v')))
-                   (assoc m k v'))))]
-       (reduce merge-entry (or a {}) (seq b)))))
-  ([a b & more]
-   (reduce deep-merge (or a {}) (cons b more))))
+  "Recursively merges maps.
+  See https://dnaeon.github.io/recursively-merging-maps-in-clojure/. "
+  [& maps]
+  (letfn [(m [& xs]
+            (if (some #(and (map? %) (not (record? %))) xs)
+              (apply merge-with m xs)
+              (last xs)))]
+    (reduce m maps)))
 
 (defn complete-options [{:keys [form value]
                          :as   context}]
