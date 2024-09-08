@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [1-beta4] - 2024-09-08
+- cleaned up test code
+
 ## [1-beta3] - 2024-09-08
 - when reading an ns form, mutate kindly options (PR #5)
 

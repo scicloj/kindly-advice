@@ -6,12 +6,6 @@
 (def *advisors
   (atom advisors/default-advisors))
 
-(defn f [{:keys [form]}]
-  (if (and (sequential? form)
-           (-> form first (= 'ns)))
-    (set! kindly/*options* (completion/deep-merge kindly/*options*)
-          (completion/meta-options form))))
-
 (defn advise
   "Adds advice to a context such as `{:form [:div]}`.
   Advice recommends a kind `{:form [:div], :value [:div], :kind :kindly/hiccup}`.
@@ -21,11 +15,6 @@
    (advise context @*advisors))
   ([context advisors]
    (-> context
-
-       ;; if ns form, mutate *options*?
-       ;; replace or merge?
-       f
-
        completion/complete
        (#(reduce advisors/update-context
                  %
