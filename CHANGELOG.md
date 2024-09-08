@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [1-beta6] - 2024-09-09
-- changed deep-merge impl (fixing unknown edge cases)
+- changed deep-merge impl
 
 ## [1-beta5] - 2024-09-09
 - fixed name conflict
