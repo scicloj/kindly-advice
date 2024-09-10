@@ -57,29 +57,17 @@
      (:kindly/options m))
    (when (var? x) (meta-options @x))))
 
-
-(defn deep-merge
-  "Recursively merges maps.
-  See https://dnaeon.github.io/recursively-merging-maps-in-clojure/. "
-  [& maps]
-  (letfn [(m [& xs]
-            (if (some #(and (map? %) (not (record? %))) xs)
-              (apply merge-with m xs)
-              (last xs)))]
-    (reduce m maps)))
-
-(defn complete-options [{:keys [form value]
+(defn complete-options [{:keys [form]
                          :as   context}]
-  (let [options (deep-merge (meta-options form)
-                            (meta-options value))]
-    ;; Kindly options found on ns cause *options* to be mutated
+  (let [form-options (meta-options form)]
+    ;; Kindly options found on ns form cause options to be mutated
     (when (and (sequential? form)
-               (-> form first (= 'ns)))
-      (set! kindly/*options* (deep-merge kindly/*options* options (meta-options *ns*))))
-    ;; Toolmakers should ensure *options* is reset when reading namespaces by (binding [kindly/*options* kindly/*options*] ...)
+               (-> form first (= 'ns))
+               form-options)
+      (kindly/merge-options! form-options))
     (update context :kindly/options
             (fn [context-options]
-              (deep-merge context-options kindly/*options* options)))))
+              (kindly/deep-merge context-options (kindly/get-options))))))
 
 (defn complete [context]
   (-> context

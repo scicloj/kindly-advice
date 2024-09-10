@@ -1,7 +1,6 @@
 (ns scicloj.kindly-advice.v1.api
   (:require [scicloj.kindly-advice.v1.advisors :as advisors]
-            [scicloj.kindly-advice.v1.completion :as completion]
-            [scicloj.kindly.v4.api :as kindly]))
+            [scicloj.kindly-advice.v1.completion :as completion]))
 
 (def *advisors
   (atom advisors/default-advisors))
