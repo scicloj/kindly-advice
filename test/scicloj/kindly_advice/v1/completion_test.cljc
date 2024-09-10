@@ -34,5 +34,7 @@
     (is (= :kind/table (kac/meta-kind #'table5)))))
 
 (deftest options-test
-  (kac/complete-options {:form ^{:kindly/options {:foo "bar"}} '(ns test.ns)})
+  (kac/complete-options {:form
+                         (read-string
+                          "^{:kindly/options {:foo \"bar\"}} (ns test.ns)")})
   (is (= {:foo "bar"} (kindly/get-options))))
