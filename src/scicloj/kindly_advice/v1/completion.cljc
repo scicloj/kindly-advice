@@ -57,7 +57,7 @@
      (:kindly/options m))
    (when (var? x) (meta-options @x))))
 
-(defn complete-options [{:keys [form]
+(defn complete-options [{:keys [form value]
                          :as   context}]
   (let [form-options (meta-options form)]
     ;; Kindly options found on ns form cause options to be mutated
@@ -65,9 +65,13 @@
                (-> form first (= 'ns))
                form-options)
       (kindly/merge-options! form-options))
+
     (update context :kindly/options
             (fn [context-options]
-              (kindly/deep-merge context-options (kindly/get-options))))))
+              (kindly/deep-merge context-options
+                                 (kindly/get-options)
+                                 (meta-options value)
+                                 form-options)))))
 
 (defn complete [context]
   (-> context

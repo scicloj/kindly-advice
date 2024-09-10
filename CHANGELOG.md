@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file. This change
 
 ## [1-beta8] - 2024-09-10
 - updated Kindly to version 4-beta11 (deep-merge fix) 
+- merging all relevant options
 
 ## [1-beta7] - 2024-09-10
 - updated Kindly to version 4-beta8 (moved options to ns form)
