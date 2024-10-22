@@ -4,7 +4,7 @@
 
 Kindly-advice is a small library to advise Clojure data visualization and notebook tools how to display forms and values, following the [Kindly](https://github.com/scicloj/kindly) convention.
 
-[Documentation](https://scicloj.github.io/kindly-noted/kindly-advice)
+[Documentation](https://scicloj.github.io/kindly-noted/kindly_advice)
 
 ## Status
 Kindly-advice is in Beta stage.
