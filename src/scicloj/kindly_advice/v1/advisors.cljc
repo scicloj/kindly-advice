@@ -50,6 +50,10 @@
           pr-str
           (= "java.awt.image.BufferedImage")))
     :kind/image]
+   [(fn [v] (let [m (meta v)]
+              (and (:portal.viewer/reagent? m)
+                   (-> m :portal.viewer/default (= :emmy.portal/reagent)))))
+    :kind/emmy-viewers]
    [(fn [v]
       (some-> v
               meta
@@ -61,7 +65,6 @@
    [set? :kind/set]
    [vector? :kind/vector]
    [sequential? :kind/seq]])
-
 
 (def default-advisors
   [meta-kind-advisor

@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file. This change
 
 ## [1-beta10] - 2024-10-22
 - updated Kindly version
+- added automatic inference for `:kind/emmy-viewers`
 
 ## [1-beta9] - 2024-10-15
 - updated Kindly version
