@@ -1,7 +1,7 @@
 {:deps    {org.clojure/clojure {:mvn/version "1.11.1"}
-           org.scicloj/kindly  {:mvn/version "4-beta12"}}
+           org.scicloj/kindly  {:mvn/version "4-beta13"}}
  :aliases {:dev   {:extra-deps  {org.scicloj/clay   {:mvn/version "2-beta17"}
-                                 scicloj/tablecloth {:mvn/version "7.021"}}
+                                 scicloj/tablecloth {:mvn/version "7.029.2"}}
                    :extra-paths ["test" "notebooks"]}
            ;; Run tests with `clojure -T:build`
            :build {:deps {io.github.clojure/tools.build {:mvn/version "0.9.6"}
@@ -9,4 +9,5 @@
                    :ns-default build}
            ;; Run tests with `clojure -M:test -m cognitect.test-runner`
            :test  {:extra-paths ["test"]
-                   :extra-deps  {io.github.cognitect-labs/test-runner {:git/tag "v0.5.0" :git/sha "48c3c67"}}}}}
+                   :extra-deps  {io.github.cognitect-labs/test-runner {:git/tag "v0.5.0" :git/sha "48c3c67"}
+                                 scicloj/tablecloth {:mvn/version "7.029.2"}}}}}
