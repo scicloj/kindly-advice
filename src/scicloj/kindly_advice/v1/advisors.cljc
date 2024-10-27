@@ -52,7 +52,8 @@
     :kind/image]
    [(fn [v] (let [m (meta v)]
               (and (:portal.viewer/reagent? m)
-                   (-> m :portal.viewer/default (= :emmy.portal/reagent)))))
+                   (-> m :portal.viewer/default keyword?)
+                   (-> m :portal.viewer/default namespace (= "emmy.portal")))))
     :kind/emmy-viewers]
    [(fn [v]
       (some-> v

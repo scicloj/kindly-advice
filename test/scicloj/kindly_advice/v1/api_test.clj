@@ -21,8 +21,12 @@
   (is (= :kind/image (value->kind image)))
   (is (= :kind/emmy-viewers (value->kind
                              (with-meta [:div]
-                               {:portal.viewer/reagent? true,
-                                :portal.viewer/default :emmy.portal/reagent,}))))
+                               {:portal.viewer/reagent? true
+                                :portal.viewer/default :emmy.portal/reagent}))))
+  (is (= :kind/emmy-viewers (value->kind
+                             (with-meta [:div]
+                               {:portal.viewer/reagent? true
+                                :portal.viewer/default :emmy.portal/mafs}))))
   (is (= :kind/test (value->kind #'dummy-test)))
   (is (= :kind/var (value->kind #'image)))
   (is (= :kind/map (value->kind {:x 9})))
