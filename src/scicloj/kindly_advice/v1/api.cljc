@@ -2,8 +2,11 @@
   (:require [scicloj.kindly-advice.v1.advisors :as advisors]
             [scicloj.kindly-advice.v1.completion :as completion]))
 
+(def default-advisors
+  advisors/default-advisors)
+
 (def *advisors
-  (atom advisors/default-advisors))
+  (atom default-advisors))
 
 (defn advise
   "Adds advice to a context such as `{:form [:div]}`.
