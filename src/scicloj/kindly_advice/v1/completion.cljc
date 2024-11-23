@@ -51,6 +51,48 @@
     :meta-kind (or (meta-kind form)
                    (meta-kind value))))
 
+(defn hide-code? [{:as note :keys [code form value kind]} options]
+  (let [m (merge options (meta form) (meta value))
+        hide-code (select-keys m [:hide-code
+                                  :kind/hide-code
+                                  :kindly/hide-code
+                                  :kindly/hide-code?])]
+    (or (= kind :kind/hidden)
+        (nil? code)
+        (some val hide-code)
+        (and kind
+             (empty? hide-code)
+             (some-> options :kinds-that-hide-code kind)))))
+
+(def default-hide-value-syms
+  '#{ns comment
+     def defonce defn defmacro
+     defrecord defprotocol deftype
+     extend-protocol extend
+     require})
+
+(defn hide-value? [{:as note :keys [form value kind]}
+                   {:as options :keys [hide-nils hide-vars hide-value-syms]}]
+  (let [m (merge options (meta form) (meta value))
+        hide-value (select-keys m [:hide-value
+                                   :kind/hide-value
+                                   :kindly/hide-value
+                                   :kindly/hide-value?])]
+    (or (= kind :kind/hidden)
+        (some val hide-value)
+        (and hide-nils (nil? value))
+        (and hide-vars (var? value))
+        (and (sequential? form)
+             (some->> form first (get (or hide-value-syms default-hide-value-syms))))
+        (and kind
+             (empty? hide-value)
+             (some-> options :kinds-that-hide-values kind)))))
+
+(defn with-hide-options [context options]
+  (cond-> options
+          (hide-code? context options) (assoc :hide-code true)
+          (hide-value? context options) (assoc :hide-value true)))
+
 (defn meta-options [x]
   (or
    (when-let [m (meta x)]
@@ -60,7 +102,8 @@
 (defn complete-options [{:keys [form value]
                          :as   context}]
   (let [form-options (meta-options form)]
-    ;; Kindly options found on ns form cause options to be mutated
+    ;; Kindly options found on ns form cause options to be mutated,
+    ;; note that options on the value are already on the ns.
     (when (and (sequential? form)
                (-> form first (= 'ns))
                form-options)
@@ -68,10 +111,13 @@
 
     (update context :kindly/options
             (fn [context-options]
-              (kindly/deep-merge context-options
-                                 (kindly/get-options)
-                                 (meta-options value)
-                                 form-options)))))
+              ;; context options come from configuration
+              (->> (kindly/deep-merge context-options
+                                      ;; options from the ns
+                                      (kindly/get-options)
+                                      form-options
+                                      (meta-options value))
+                   (with-hide-options context))))))
 
 (defn complete [context]
   (-> context
