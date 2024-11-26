@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [1-beta13] - unreleased
+- add hide-code and hide-value detection (PR #10)
+
 ## [1-beta12] - 2024-10-31
 - added `default-advisors` back in the API namespace
 
