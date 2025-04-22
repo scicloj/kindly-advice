@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file. This change
 
 ## [1-beta13] - unreleased
 - add hide-code and hide-value detection (PR #10)
+- updated kindly version: "4-beta16"
 
 ## [1-beta12] - 2024-10-31
 - added `default-advisors` back in the API namespace
