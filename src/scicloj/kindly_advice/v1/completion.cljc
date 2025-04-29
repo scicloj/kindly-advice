@@ -66,7 +66,7 @@
 
 (def default-hide-value-syms
   '#{ns comment
-     def defonce defn defmacro
+     def defonce defn defn- defmacro
      defrecord defprotocol deftype
      extend-protocol extend
      require})
