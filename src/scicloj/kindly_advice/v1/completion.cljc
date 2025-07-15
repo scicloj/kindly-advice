@@ -78,20 +78,22 @@
                                    :kind/hide-value
                                    :kindly/hide-value
                                    :kindly/hide-value?])]
-    (or (= kind :kind/hidden)
-        (some val hide-value)
-        (and hide-nils (nil? value))
-        (and hide-vars (var? value))
-        (and (sequential? form)
-             (some->> form first (get (or hide-value-syms default-hide-value-syms))))
-        (and kind
-             (empty? hide-value)
-             (some-> options :kinds-that-hide-values kind)))))
+    (and (or (= kind :kind/hidden)
+             (some val hide-value)
+             (and hide-nils (nil? value))
+             (and hide-vars (var? value))
+             (and (sequential? form)
+                  (some->> form first (get (or hide-value-syms default-hide-value-syms))))
+             (and kind
+                  (empty? hide-value)
+                  (some-> options :kinds-that-hide-values kind)))
+         ;; make sure not to hide the values for kind/scittle
+         (not= kind :kind/scittle))))
 
 (defn with-hide-options [context options]
-  (cond-> options
-          (hide-code? context options) (assoc :hide-code true)
-          (hide-value? context options) (assoc :hide-value true)))
+  (-> options
+      (assoc :hide-code (hide-code? context options))
+      (assoc :hide-value (hide-value? context options))))
 
 (defn meta-options [x]
   (or
