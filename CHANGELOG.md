@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [unreleased]
+- adapting the logic of hide-value for kind/scittle
+- bugfix: `kind/hidden` should hide the value, not the code
+
 ## [1-beta14] - 2025-04-29
 - added `defn-` to `default-hide-value-syms`, so its output will be hidden
 

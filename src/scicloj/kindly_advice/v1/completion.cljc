@@ -57,8 +57,7 @@
                                   :kind/hide-code
                                   :kindly/hide-code
                                   :kindly/hide-code?])]
-    (or (= kind :kind/hidden)
-        (nil? code)
+    (or (nil? code)
         (some val hide-code)
         (and kind
              (empty? hide-code)
