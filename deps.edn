@@ -1,5 +1,5 @@
-{:deps    {org.clojure/clojure {:mvn/version "1.11.1"}
-           org.scicloj/kindly  {:mvn/version "4-beta16"}}
+{:deps    {org.clojure/clojure {:mvn/version "1.12.4"}
+           io.github.scicloj/kindly {:git/sha "2863a8e08c39b1ec50a2ffde2d0874942a113d4b"}}
  :aliases {:dev   {:extra-deps  {org.scicloj/clay   {:mvn/version "2-beta19"}
                                  scicloj/tablecloth {:mvn/version "7.029.2"}}
                    :extra-paths ["test" "notebooks"]}
