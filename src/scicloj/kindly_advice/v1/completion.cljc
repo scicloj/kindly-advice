@@ -102,26 +102,9 @@
 (defn complete-options [{:keys [form value]
                          :as   context}]
   (let [form-options (meta-options form)]
-    ;; Kindly options found on ns form cause options to be mutated,
-    ;; note that options on the value are already on the ns.
-
-    ;; TODO Instead this should be picked up in read-kinds.notes/merge-options
-
-    ;; TODO It also raises the question, maybe all option
-    ;; extraction/propagation related code should be here and in
-    ;; kindly, then used from read-kinds to get options for
-    ;; propagation
-    #_(when (and (sequential? form)
-               (-> form first (= 'ns))
-               form-options)
-      (kindly/merge-options! form-options))
-
     (update context :kindly/options
             (fn [context-options]
-              ;; context options come from configuration
               (->> (kindly/deep-merge context-options
-                                      ;; options from the ns
-                                      ;; (kindly/get-options)
                                       form-options
                                       (meta-options value))
                    (with-hide-options context))))))
