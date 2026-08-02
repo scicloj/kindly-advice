@@ -5,7 +5,7 @@
             [tablecloth.api :as tc]))
 
 (defonce image
-  (->  "https://upload.wikimedia.org/wikipedia/commons/2/2c/Clay-ss-2005.jpg"
+  (->  "https://scicloj.github.io/clay/notebooks/images/Clay.svg.png"
        (java.net.URL.)
        (javax.imageio.ImageIO/read)))
 
@@ -29,6 +29,7 @@
                                 :portal.viewer/default :emmy.portal/mafs}))))
   (is (= :kind/test (value->kind #'dummy-test)))
   (is (= :kind/var (value->kind #'image)))
+  (is (= :kind/html (value->kind (tagged-literal 'flare/html {:html "hello"}))))
   (is (= :kind/map (value->kind {:x 9})))
   (is (= :kind/set (value->kind #{:x 9})))
   (is (= :kind/vector (value->kind [:x 9])))
