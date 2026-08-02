@@ -61,6 +61,10 @@
               :test
               fn?))
     :kind/test]
+   [(fn [v]
+      (and (tagged-literal? v)
+           (= (:tag v) :html)))
+    :kind/html]
    [var? :kind/var]
    [map? :kind/map]
    [set? :kind/set]
