@@ -63,7 +63,7 @@
     :kind/test]
    [(fn [v]
       (and (tagged-literal? v)
-           (= (:tag v) :html)))
+           (= (:tag v) 'flare/html)))
     :kind/html]
    [var? :kind/var]
    [map? :kind/map]
