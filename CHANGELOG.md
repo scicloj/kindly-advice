@@ -1,10 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## unreleased
+## [1-beta17] - 2026-08-03
 - updated kindly version
 
-## [1-beta16]
+## [1-beta16] - 2026-08-03
 - detect flares as `:kind/html` (PR #13)
 - updated kindly version
 
