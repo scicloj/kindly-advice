@@ -5,7 +5,7 @@
             [tablecloth.api :as tc]))
 
 (defonce image
-  (->  "https://upload.wikimedia.org/wikipedia/commons/2/2c/Clay-ss-2005.jpg"
+  (->  "https://avatars.githubusercontent.com/u/46918058?s=400&u=b2cc254c4189e6be78130ce7a8ad8e3fa7b9a8a9&v=4"
        (java.net.URL.)
        (javax.imageio.ImageIO/read)))
 
