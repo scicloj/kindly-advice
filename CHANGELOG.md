@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file. This change
 
 ## unreleased
 - detect flares as `:kind/html` (PR #13)
+- updated kindly version
 
 ## [1-beta14] - 2025-04-29
 - added `defn-` to `default-hide-value-syms`, so its output will be hidden
