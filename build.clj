@@ -16,7 +16,7 @@
 
 (def lib 'org.scicloj/kindly-advice)
 
-(def version "1-beta14")
+(def version "1-beta15")
 (def snapshot (str version "-SNAPSHOT"))
 (def class-dir "target/classes")
 
