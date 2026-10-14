@@ -67,6 +67,7 @@
     :kind/html]
    [(fn [v]
       (and (vector? v)
+           (> (count v) 1)
            (keyword? (first v))
            (not-any? keyword? (rest v))))
     :kind/hiccup]
