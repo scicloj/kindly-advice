@@ -1,5 +1,4 @@
-(ns scicloj.kindly-advice.v1.advisors
-  (:require [clojure.string :as str]))
+(ns scicloj.kindly-advice.v1.advisors)
 
 (defn advice->recommended-kind [advice]
   (-> advice
@@ -69,9 +68,7 @@
    [(fn [v]
       (and (vector? v)
            (keyword? (first v))
-           (or (= "kind" (namespace (first v)))
-               (-> (first v) (name) (str/split  #"\.") (first)
-                   #{"div" "svg"}))))
+           (not-any? keyword? (rest v))))
     :kind/hiccup]
    [var? :kind/var]
    [map? :kind/map]
