@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [1-beta17] - 2026-10-21
+- detect kinds as hiccup tags, and div/svg (PR #14)
+
 ## [1-beta17] - 2026-08-03
 - updated kindly version
 
