@@ -65,6 +65,13 @@
       (and (tagged-literal? v)
            (= (:tag v) 'flare/html)))
     :kind/html]
+   [(fn [v]
+      (and (vector? v)
+           (> (count v) 1)
+           (keyword? (first v))
+           (not-any? keyword? (rest v))
+           (not-any? number? (rest v))))
+    :kind/hiccup]
    [var? :kind/var]
    [map? :kind/map]
    [set? :kind/set]
